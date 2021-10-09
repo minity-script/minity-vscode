@@ -1,0 +1,44 @@
+{
+    "name": "mclang",
+    "displayName": "McLang Language Support",
+    "description": "Provide syntax highlighting for McLang",
+    "publisher": "mclang",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.59.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "activationEvents": [
+        "onLanguage:mclang"
+    ],
+    "main": "./src/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "mclang.helloWorld",
+                "title": "Hello World"
+            }
+        ],
+        "languages": [
+            {
+                "id": "mclang",
+                "extensions": [
+                    ".mclang"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "mclang",
+                "scopeName": "source.mclang",
+                "path": "./syntaxes/mclang.tmLanguage"
+            }
+        ]
+    },
+    "dependencies": {
+        "@mclang/mclang": "file:../mclang"
+    }
+}

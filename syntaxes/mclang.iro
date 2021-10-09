@@ -1,0 +1,452 @@
+########################################
+## Header
+########################################
+
+name                    = mclang
+file_extensions []      = mclang;
+
+########################################
+## Styles
+########################################
+
+styles[] {
+   .keyword    : style {
+       color = cyan
+       bold = true
+       textmate_scope = keyword.control
+   }
+
+   .cmd      : style {
+       color = yellow
+       textmate_scope = entity.name.function
+   }
+   .command    : style {
+       color = violet
+       textmate_scope = text
+   }
+   .punctuation : style {
+       color = white
+       bold = true
+       textmate_scope = punctuation
+   }
+   .quoted_text : style {
+       color = orange
+       textmate_scope = string
+   }
+   .unquoted_text : style {
+       color = white
+       textmate_scope = text
+   }
+   .number : style {
+       color = gold
+       textmate_scope = constant.numeric
+   }
+   
+   .escaped_text : style {
+       color = yellow
+       textmate_scope = constant.character.escape
+   }
+   .comment    : style {
+       color = grey
+       textmate_scope = comment
+   }
+   .tag    : style {
+       color = light_green
+       textmate_scope = support.class
+   }
+   .selector    : style {
+       color = light_green
+       bold = true
+       textmate_scope = support.class
+   }
+   .function    : style {
+       color = gold
+       bold = true
+       textmate_scope = entity.name.function
+   }
+   .type    : style {
+       color = cyan
+       textmate_scope = storage.type
+   }
+   .var    : style {
+       color = violet
+       bold = true
+       textmate_scope = variable
+   }
+   .arg    : style {
+       color = violet
+       bold = false
+       textmate_scope = variable.other.constant
+   }
+   .illegal : style {
+       color = red
+       italic = true
+       textmate_scope = invalid.illegal.error
+   }
+   .ws : style {
+       color = red
+       italic = true
+       textmate_scope = whitespace
+   }
+   .raw_name: style{
+       color = pink
+       italic = true
+       textmate_scope = entity.name.tag
+   }
+   .raw_punct: style{
+       color = violet
+       italic = true
+       textmate_scope = punctuation.definition.tag
+   }
+   .raw_attr: style{
+       color = violet
+       italic = true
+       textmate_scope = entity.other.attribute-name
+   }
+   .raw_text: style{
+       color = violet
+       italic = true
+       textmate_scope = text
+   }
+}
+
+########################################
+## Contexts
+########################################
+
+
+__keywords = (?:\\b(?:namespace|function|macro|var|score|after|true|false|json|tag|align|anchored|as|at|for|in|up|down|north|south|east|west|left|right|pos|positioned|rot|rotated|if|unless|else|then)\\b)
+
+__cmd = (?:\\b(?:print|give|setblock|delete|remove|summon|untag)\\b)
+
+__coords = (?:\\b(?:in|up|down|north|south|east|west|left|right)\\b)
+__conds = (?:\\b(?:sort|limit|tag|nbt|type|predicate|distance|level|team|name|gamemode|scores|advancements)\\b)
+__sort = (?:\\b(?:nearest|closest|furthest|arbitrary|oldest|any|random)\\b)
+
+
+__word = (?:[a-zA-Z]\\w*)
+
+__resloc = (?:(?:$${__word}:)?$${__word}(?:/$${__word})*)
+__restag = (?:#$${__resloc})
+
+contexts[] {
+   main : context {
+      : inline_push {
+         regex         \= (function|macro)
+         styles []      = .type;
+         
+         default_style  = .function
+         : pop {
+            regex      \= (?=[{(])
+            styles []   = .punctuation;
+         }
+      }
+      : include "globals";
+   }
+  
+   statements: context {
+      : include "globals";
+      : pattern {
+         regex         \= (function|macro)
+         styles []      = .illegal;
+      }
+   }
+  
+   globals : context {
+      : pattern {
+         regex   \= (//.+)
+         styles[] = .comment;
+      }
+      : pattern {
+         regex   \= (/.+)
+         styles[] = .command;
+      }
+      
+      : include "selector";
+
+
+      : pattern {
+         regex   \= (\.$${__word})
+         styles[] = .tag;
+      }
+
+      : pattern {
+         regex   \= (tag)(\s+)($${__word})(?!.*?\@)
+         styles[] = .type,.tag,.tag;
+      }
+      
+      : pattern {
+         regex   \= (var)(\s+$)($${__word})
+         styles[] = .type,.var,.var;
+      }
+      
+      : pattern {
+         regex   \= (tag|untag)(\s+)($${__word})
+         styles[] = .cmd,.ws,.tag;
+      }
+
+      : pattern {
+         regex   \= ($${__keywords})
+         styles[] = .keyword;
+      }
+
+      : pattern {
+         regex   \= ($${__cmd})
+         styles[] = .cmd;
+      }
+
+      : pattern {
+         regex   \= (eyes|feet)
+         styles[] = .keyword;
+      }
+
+      
+      : pattern {
+         regex   \= ($${__resloc}\s*(?=\())
+         styles[] = .function;
+      }
+      
+      
+   
+   
+   
+
+
+      : include "braces";
+      : include "brackets";
+      : include "parens";
+      : include "values";
+      
+      : pattern {
+         regex   \= ([[\]:=,#<>+\-*/%]|\.\.)
+         styles[] = .punctuation;
+      }
+      : pattern {
+          regex   \= (.)
+          styles[] = .illegal;
+      }
+
+   } 
+   
+   selector: context {
+     : inline_push {
+         regex   \= ($${__sort}\s+)?(\d+\s+)?(\@$${__resloc})
+         styles[] = .selector, .selector, .selector;
+         
+         : pop {
+            regex \= ([\s])
+            styles[] = .selector;
+         }
+      
+         : inline_push {
+            regex         \= (\[)
+            styles []      = .selector;
+            : pop {
+               regex      \= (\])
+               styles []   = .selector;
+            }
+            : pattern {
+               regex      \= (\s*$${__conds}\s*=\s*)
+               styles []   = .selector;
+            }
+            : pattern {
+               regex      \= (\s*$${__word}\s*=\s*)
+               styles []   = .illegal;
+            }
+            : include "literals";
+         }
+
+         : pattern {
+            regex   \= (\.$${__word})
+            styles[] = .tag;
+         }
+         : pattern {
+            regex   \= (\.)(\?$${__word})
+            styles[] = .tag, .arg;
+         }
+         : push {
+            regex         \= (\.)(\")
+            styles []      = .tag, .quoted_text;
+            context[]      = inside_quotes;
+         }
+      }
+   }
+   
+   
+   
+   braces : context {
+      : inline_push {
+         regex       \= (\{)
+         styles []    = .punctuation;
+         : pop {
+            regex    \= (\})
+            styles [] = .punctuation;
+         }
+         : include "statements" ;
+      }
+   }
+   
+   brackets : context {
+      : inline_push {
+         regex       \= (\[)
+         styles []    = .punctuation;
+         : pop {
+            regex    \= (\])
+            styles [] = .punctuation;
+         }
+         : include "statements" ;
+      }
+   }
+   
+   values: context {
+         : include "selector" ;
+         : include "raw_tags";
+          : pattern {
+               regex   \= (\$$${__word})
+               styles[] = .var;
+           }
+         : include "literals" ;
+   }
+   
+   
+   parens : context {
+      : inline_push {
+         regex       \= (\()
+         styles []    = .punctuation;
+         : pop {
+            regex    \= (\))
+            styles [] = .punctuation;
+         }
+         : pattern {
+            regex   \= ($${__coords})
+            styles[] = .keyword;
+         }
+         : include "values";
+      }
+   }
+   
+   literals: context {
+      : pattern {
+         regex   \= (\?$${__word})
+         styles[] = .arg;
+      }
+   
+      : include "braces";
+      : include "brackets";
+
+       : push {
+         regex         \= (")
+         styles []      = .quoted_text;
+         context []     = inside_quotes;
+      }
+      : pattern {
+         regex   \= ([+-]?[0-9]+)((?:\.[0-9]+)?)((?:[eE][0-9]+)?)((?:deg|[fdbsli])?)
+         styles[] = .number,.number,.number, .number;
+      }
+      
+      : pattern {
+         regex   \= ($${__word})
+         styles[] = .unquoted_text;
+      }
+      
+
+   }
+   
+   raw_tags : context {
+      : inline_push {
+         regex         \= (<)($${__word})(\s*)
+         styles []      = .raw_punct, .raw_name, .ws;
+         :pop {
+            regex         \= (?:(</)($${__word})(>)|(/>))
+            styles []      = .raw_punct, .raw_name, .raw_punct, .raw_punct;
+         }
+         : include "literals";
+         : inline_push { 
+            regex         \= (>)
+            styles []      = .raw_punct;
+            : pop {
+               regex         \= (?=</)
+               styles []      = .raw_punct;
+            }  
+            : include "raw_tags";
+            : pattern {
+               regex      \= ([^<]+)
+               styles [] = .raw_text;
+            }      
+         }
+      }
+      : pattern {
+         regex      \= (</)
+         styles [] = .illegal;
+      }      
+      
+   }
+
+   inside_quotes : context {
+      : pop {
+         regex      \= (")
+         styles []   = .quoted_text;
+      }
+      : pattern {
+         regex      \= (\\(?:[\\nrt{]|u\d\d\d\d))
+         styles [] = .escaped_text;
+      }
+
+      : include "inside_expansion";
+
+      : pattern {
+         regex      \= ([^"\\{]+)
+         styles [] = .quoted_text;
+      }
+   }
+   
+   
+   inside_expansion: context {
+      :include "arg_expansion";
+      :include "tag_expansion";
+      
+   }
+
+   
+   arg_expansion : context {
+     
+       : inline_push {
+         regex       \= (\{)(\?)
+         styles []    = .punctuation, .arg;
+         : pop {
+            regex    \= ([\}\"])
+            styles [] = .punctuation;
+         }
+         
+       : pattern {
+         regex      \= ([^"\\{}]+)
+         styles [] = .arg;
+       }   
+       : include "inside_expansion";
+         
+      }
+   }
+   
+   
+   tag_expansion : context {
+     
+       : inline_push {
+         regex       \= (\{)(\.)
+         styles []    = .escaped_text, .tag;
+         : pop {
+            regex    \= ([\}\"])
+            styles [] = .escaped_text;
+         }
+         
+       : pattern {
+         regex      \= ([^"\\{}]+)
+         styles [] = .tag;
+       }   
+       : include "inside_expansion";
+         
+      }
+   }
+   
+   
+
+}
