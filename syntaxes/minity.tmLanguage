@@ -5,10 +5,10 @@
 <dict>
   <key>fileTypes</key>
   <array> 
-    <string>mclang</string>
+    <string>minity</string>
    </array>
   <key>name</key>
-  <string>mclang</string>
+  <string>minity</string>
   <key>patterns</key>
   <array> 
     <dict>
@@ -17,7 +17,7 @@
     </dict>
    </array>
   <key>scopeName</key>
-  <string>source.mclang</string>
+  <string>source.minity</string>
   <key>uuid</key>
   <string></string>
   <key>repository</key>
@@ -34,11 +34,11 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>storage.type.mclang</string>
+              <string>storage.type.minity</string>
             </dict>
           </dict>
           <key>contentName</key>
-          <string>entity.name.function.mclang</string>
+          <string>entity.name.function.minity</string>
           <key>end</key>
           <string>(?=[\x{007b}\x{0028}])</string>
           <key>endCaptures</key>
@@ -46,7 +46,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
         </dict>
@@ -68,12 +68,12 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>variable.other.constant.mclang</string>
+              <string>variable.other.constant.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -90,7 +90,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
         </dict>
@@ -104,7 +104,7 @@
           <key>match</key>
           <string>([^\x{0022}\x{005c}\x{007b}\x{007d}\n\n]+)</string>
           <key>name</key>
-          <string>variable.other.constant.mclang</string>
+          <string>variable.other.constant.minity</string>
         </dict>
         <dict>
           <key>include</key>
@@ -124,7 +124,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -141,7 +141,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
         </dict>
@@ -169,7 +169,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -186,7 +186,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
         </dict>
@@ -214,7 +214,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -231,7 +231,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
           </dict>
         </dict>
@@ -245,13 +245,13 @@
           <key>match</key>
           <string>(\s*(?:\b(?:sort|limit|tag|nbt|type|predicate|distance|level|team|name|gamemode|scores|advancements)\b)\s*=\s*)</string>
           <key>name</key>
-          <string>support.class.mclang</string>
+          <string>support.class.minity</string>
         </dict>
         <dict>
           <key>match</key>
           <string>(\s*(?:[a-zA-Z]\w*)\s*=\s*)</string>
           <key>name</key>
-          <string>invalid.illegal.error.mclang</string>
+          <string>invalid.illegal.error.minity</string>
         </dict>
         <dict>
           <key>include</key>
@@ -267,13 +267,13 @@
           <key>match</key>
           <string>(//.+)</string>
           <key>name</key>
-          <string>comment.mclang</string>
+          <string>comment.minity</string>
         </dict>
         <dict>
           <key>match</key>
           <string>(sssss/.+)</string>
           <key>name</key>
-          <string>entity.name.function.mclang</string>
+          <string>entity.name.function.minity</string>
         </dict>
         <dict>
           <key>begin</key>
@@ -283,7 +283,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>entity.name.function.mclang</string>
+              <string>entity.name.function.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -300,7 +300,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>entity.name.function.mclang</string>
+              <string>entity.name.function.minity</string>
             </dict>
           </dict>
         </dict>
@@ -308,7 +308,7 @@
           <key>match</key>
           <string>(\.(?:[a-zA-Z]\w*))</string>
           <key>name</key>
-          <string>support.class.mclang</string>
+          <string>support.class.minity</string>
         </dict>
         <dict>
           <key>match</key>
@@ -318,17 +318,17 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>storage.type.mclang</string>
+              <string>storage.type.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>whitespace.mclang</string>
+              <string>whitespace.minity</string>
             </dict>
             <key>3</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
           </dict>
         </dict>
@@ -340,17 +340,17 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>storage.type.mclang</string>
+              <string>storage.type.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>whitespace.mclang</string>
+              <string>whitespace.minity</string>
             </dict>
             <key>3</key>
             <dict>
               <key>name</key>
-              <string>variable.mclang</string>
+              <string>variable.minity</string>
             </dict>
           </dict>
         </dict>
@@ -358,7 +358,7 @@
           <key>match</key>
           <string>(^\s*(?:\b(?:function|macro|namespace|score|tag|var)\b))</string>
           <key>name</key>
-          <string>storage.type.mclang</string>
+          <string>storage.type.minity</string>
         </dict>
         <dict>
           <key>match</key>
@@ -368,17 +368,17 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>storage.type.mclang</string>
+              <string>storage.type.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>variable.mclang</string>
+              <string>variable.minity</string>
             </dict>
             <key>3</key>
             <dict>
               <key>name</key>
-              <string>variable.mclang</string>
+              <string>variable.minity</string>
             </dict>
           </dict>
         </dict>
@@ -390,27 +390,27 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>keyword.control.mclang</string>
+              <string>keyword.control.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>whitespace.mclang</string>
+              <string>whitespace.minity</string>
             </dict>
             <key>3</key>
             <dict>
               <key>name</key>
-              <string>text.mclang</string>
+              <string>text.minity</string>
             </dict>
             <key>4</key>
             <dict>
               <key>name</key>
-              <string>whitespace.mclang</string>
+              <string>whitespace.minity</string>
             </dict>
             <key>5</key>
             <dict>
               <key>name</key>
-              <string>meta.object.literal.key.mclang</string>
+              <string>meta.object.literal.key.minity</string>
             </dict>
           </dict>
         </dict>
@@ -418,25 +418,25 @@
           <key>match</key>
           <string>((?:\b(?:after|else|every|and|if|import|repeat|test|then|until|unless|when|while|with|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\b)|(?:\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\b))</string>
           <key>name</key>
-          <string>keyword.control.mclang</string>
+          <string>keyword.control.minity</string>
         </dict>
         <dict>
           <key>match</key>
           <string>((?:\b(?:append|delete|merge|bossbar|clear|delete|give|prepend|remove|print|say|setblock|summon|tag|untag|add|remove)\b))</string>
           <key>name</key>
-          <string>keyword.control.mclang</string>
+          <string>keyword.control.minity</string>
         </dict>
         <dict>
           <key>match</key>
           <string>(eyes|feet)</string>
           <key>name</key>
-          <string>keyword.control.mclang</string>
+          <string>keyword.control.minity</string>
         </dict>
         <dict>
           <key>match</key>
           <string>((?:(?:(?:[a-zA-Z]\w*):)?(?:[a-zA-Z]\w*)(?:/(?:[a-zA-Z]\w*))*)\s*(?=\())</string>
           <key>name</key>
-          <string>entity.name.function.mclang</string>
+          <string>entity.name.function.minity</string>
         </dict>
         <dict>
           <key>include</key>
@@ -462,13 +462,13 @@
           <key>match</key>
           <string>([\x{005b}\]\x{003a}\x{003d}\x{002c}\x{0023}\x{003c}\x{003e}\x{002b}\-\x{002a}\x{0026}\x{002f}\x{0025}\x{003f}]|\.\.)</string>
           <key>name</key>
-          <string>punctuation.mclang</string>
+          <string>punctuation.minity</string>
         </dict>
         <dict>
           <key>match</key>
           <string>(\S)</string>
           <key>name</key>
-          <string>invalid.illegal.error.mclang</string>
+          <string>invalid.illegal.error.minity</string>
         </dict>
        </array>
     </dict>
@@ -484,7 +484,7 @@
           <key>match</key>
           <string>([^\x{007b}\n\n]+)</string>
           <key>name</key>
-          <string>entity.name.function.mclang</string>
+          <string>entity.name.function.minity</string>
         </dict>
        </array>
     </dict>
@@ -518,7 +518,7 @@
           <key>match</key>
           <string>(\\(?:[\x{005c}nrt\x{007b}]|u\d\d\d\d))</string>
           <key>name</key>
-          <string>constant.character.escape.mclang</string>
+          <string>constant.character.escape.minity</string>
         </dict>
         <dict>
           <key>include</key>
@@ -528,7 +528,7 @@
           <key>match</key>
           <string>([^\x{0022}\x{005c}\x{007b}]+)</string>
           <key>name</key>
-          <string>string.mclang</string>
+          <string>string.minity</string>
         </dict>
        </array>
     </dict>
@@ -544,7 +544,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -561,7 +561,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
         </dict>
@@ -585,7 +585,7 @@
           <key>match</key>
           <string>(\?(?:[a-zA-Z]\w*))</string>
           <key>name</key>
-          <string>variable.other.constant.mclang</string>
+          <string>variable.other.constant.minity</string>
         </dict>
         <dict>
           <key>include</key>
@@ -603,7 +603,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>string.mclang</string>
+              <string>string.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -620,7 +620,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>string.mclang</string>
+              <string>string.minity</string>
             </dict>
           </dict>
         </dict>
@@ -628,7 +628,7 @@
           <key>match</key>
           <string>(true|false)</string>
           <key>name</key>
-          <string>constant.numeric.mclang</string>
+          <string>constant.numeric.minity</string>
         </dict>
         <dict>
           <key>match</key>
@@ -638,22 +638,22 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>constant.numeric.mclang</string>
+              <string>constant.numeric.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>constant.numeric.mclang</string>
+              <string>constant.numeric.minity</string>
             </dict>
             <key>3</key>
             <dict>
               <key>name</key>
-              <string>constant.numeric.mclang</string>
+              <string>constant.numeric.minity</string>
             </dict>
             <key>4</key>
             <dict>
               <key>name</key>
-              <string>constant.numeric.mclang</string>
+              <string>constant.numeric.minity</string>
             </dict>
           </dict>
         </dict>
@@ -661,7 +661,7 @@
           <key>match</key>
           <string>((?:[a-zA-Z]\w*))</string>
           <key>name</key>
-          <string>text.mclang</string>
+          <string>text.minity</string>
         </dict>
        </array>
     </dict>
@@ -683,7 +683,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -700,7 +700,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
         </dict>
@@ -712,7 +712,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -729,7 +729,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
         </dict>
@@ -753,7 +753,7 @@
           <key>match</key>
           <string>((?:\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\b))</string>
           <key>name</key>
-          <string>keyword.control.mclang</string>
+          <string>keyword.control.minity</string>
         </dict>
         <dict>
           <key>include</key>
@@ -773,17 +773,17 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.definition.tag.mclang</string>
+              <string>punctuation.definition.tag.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>entity.name.tag.mclang</string>
+              <string>entity.name.tag.minity</string>
             </dict>
             <key>3</key>
             <dict>
               <key>name</key>
-              <string>whitespace.mclang</string>
+              <string>whitespace.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -800,22 +800,22 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.definition.tag.mclang</string>
+              <string>punctuation.definition.tag.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>entity.name.tag.mclang</string>
+              <string>entity.name.tag.minity</string>
             </dict>
             <key>3</key>
             <dict>
               <key>name</key>
-              <string>punctuation.definition.tag.mclang</string>
+              <string>punctuation.definition.tag.minity</string>
             </dict>
             <key>4</key>
             <dict>
               <key>name</key>
-              <string>punctuation.definition.tag.mclang</string>
+              <string>punctuation.definition.tag.minity</string>
             </dict>
           </dict>
         </dict>
@@ -823,7 +823,7 @@
           <key>match</key>
           <string>(&lt;/)</string>
           <key>name</key>
-          <string>invalid.illegal.error.mclang</string>
+          <string>invalid.illegal.error.minity</string>
         </dict>
        </array>
     </dict>
@@ -843,7 +843,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.definition.tag.mclang</string>
+              <string>punctuation.definition.tag.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -860,7 +860,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.definition.tag.mclang</string>
+              <string>punctuation.definition.tag.minity</string>
             </dict>
           </dict>
         </dict>
@@ -872,12 +872,12 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>invalid.illegal.error.mclang</string>
+              <string>invalid.illegal.error.minity</string>
             </dict>
           </dict>
         </dict>
@@ -895,7 +895,7 @@
           <key>match</key>
           <string>([^\x{003c}]+)</string>
           <key>name</key>
-          <string>text.mclang</string>
+          <string>text.minity</string>
         </dict>
        </array>
     </dict>
@@ -911,17 +911,17 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
             <key>3</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -938,7 +938,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
           </dict>
         </dict>
@@ -960,7 +960,7 @@
           <key>match</key>
           <string>(\.(?:[a-zA-Z]\w*))</string>
           <key>name</key>
-          <string>support.class.mclang</string>
+          <string>support.class.minity</string>
         </dict>
         <dict>
           <key>match</key>
@@ -970,12 +970,12 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>variable.other.constant.mclang</string>
+              <string>variable.other.constant.minity</string>
             </dict>
           </dict>
         </dict>
@@ -987,12 +987,12 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>string.mclang</string>
+              <string>string.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -1009,7 +1009,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>string.mclang</string>
+              <string>string.minity</string>
             </dict>
           </dict>
         </dict>
@@ -1027,7 +1027,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -1044,7 +1044,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
           </dict>
         </dict>
@@ -1072,7 +1072,7 @@
           <key>match</key>
           <string>(function|macro)</string>
           <key>name</key>
-          <string>invalid.illegal.error.mclang</string>
+          <string>invalid.illegal.error.minity</string>
         </dict>
        </array>
     </dict>
@@ -1088,12 +1088,12 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>constant.character.escape.mclang</string>
+              <string>constant.character.escape.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>support.class.mclang</string>
+              <string>support.class.minity</string>
             </dict>
           </dict>
           <key>patterns</key>
@@ -1110,7 +1110,7 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>constant.character.escape.mclang</string>
+              <string>constant.character.escape.minity</string>
             </dict>
           </dict>
         </dict>
@@ -1124,7 +1124,7 @@
           <key>match</key>
           <string>([^\x{0022}\x{005c}\x{007b}\x{007d}]+)</string>
           <key>name</key>
-          <string>support.class.mclang</string>
+          <string>support.class.minity</string>
         </dict>
         <dict>
           <key>include</key>
@@ -1144,7 +1144,7 @@
           <key>match</key>
           <string>(\$(?:[a-zA-Z]\w*))</string>
           <key>name</key>
-          <string>variable.mclang</string>
+          <string>variable.minity</string>
         </dict>
         <dict>
           <key>match</key>
@@ -1154,12 +1154,12 @@
             <key>1</key>
             <dict>
               <key>name</key>
-              <string>punctuation.mclang</string>
+              <string>punctuation.minity</string>
             </dict>
             <key>2</key>
             <dict>
               <key>name</key>
-              <string>variable.mclang</string>
+              <string>variable.minity</string>
             </dict>
           </dict>
         </dict>

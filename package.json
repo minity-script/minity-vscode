@@ -1,8 +1,8 @@
 {
-    "name": "mclang",
-    "displayName": "McLang Language Support",
-    "description": "Provide syntax highlighting for McLang",
-    "publisher": "mclang",
+    "name": "minity",
+    "displayName": "Minity Language Support",
+    "description": "Provide syntax highlighting for Minity",
+    "publisher": "minity",
     "version": "1.0.0",
     "engines": {
         "vscode": "^1.59.0"
@@ -11,34 +11,34 @@
         "Programming Languages"
     ],
     "activationEvents": [
-        "onLanguage:mclang"
+        "onLanguage:minity"
     ],
     "main": "./src/extension.js",
     "contributes": {
         "commands": [
             {
-                "command": "mclang.helloWorld",
+                "command": "minity.helloWorld",
                 "title": "Hello World"
             }
         ],
         "languages": [
             {
-                "id": "mclang",
+                "id": "minity",
                 "extensions": [
-                    ".mclang"
+                    ".minity"
                 ],
                 "configuration": "./language-configuration.json"
             }
         ],
         "grammars": [
             {
-                "language": "mclang",
-                "scopeName": "source.mclang",
-                "path": "./syntaxes/mclang.tmLanguage"
+                "language": "minity",
+                "scopeName": "source.minity",
+                "path": "./syntaxes/minity.tmLanguage"
             }
         ]
     },
     "dependencies": {
-        "@mclang/parser": "file:../mclang-parser"
+        "@minity/parser": "file:../mclang-parser"
     }
 }

@@ -2,8 +2,8 @@
 ## Header
 ########################################
 
-name                    = mclang
-file_extensions []      = mclang;
+name                    = minity
+file_extensions []      = minity;
 
 ########################################
 ## Styles

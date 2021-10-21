@@ -1,10 +1,10 @@
-# Mclang Language Support
+# Minity Language Support
 
-Mclang Language Support provides language features for mclang
+Minity Language Support provides language features for minity
 
 ## Features
 
-* syntax highlighting and syntax checking for .mclang files
+* syntax highlighting and syntax checking for .minity files
 
 
 ## Release Notes

@@ -1,16 +1,16 @@
 const vscode = require('vscode');
-const { findError } = require('@mclang/parser');
+const { findError } = require('@minity/parser');
 
 function activate(context) {
 	/*
-	let disposable = vscode.commands.registerCommand('mclang.helloWorld', function () {
-		vscode.window.showInformationMessage('Hello World from mclang!');
+	let disposable = vscode.commands.registerCommand('minity.helloWorld', function () {
+		vscode.window.showInformationMessage('Hello World from minity!');
 	});
 	context.subscriptions.push(disposable);
 	*/
-  const mclangDiagnostics = vscode.languages.createDiagnosticCollection("mclang");
-  context.subscriptions.push(mclangDiagnostics);
-  subscribeToDiagnostics(context,mclangDiagnostics);
+  const minityDiagnostics = vscode.languages.createDiagnosticCollection("minity");
+  context.subscriptions.push(minityDiagnostics);
+  subscribeToDiagnostics(context,minityDiagnostics);
 }
 
 
@@ -22,10 +22,10 @@ module.exports = {
 	deactivate
 }
 
-const MCLANG_ERROR = 'mclang_error';
+const MINITY_ERROR = 'minity_error';
 
 function refreshDiagnostics(doc, collection)  {
-	if (doc.languageId !== "mclang") return;
+	if (doc.languageId !== "minity") return;
 	const diagnostics = [];
 
   const text = doc.getText();
@@ -43,7 +43,7 @@ function createDiagnostic(line, column, message="Syntax error") {
 	const range = new vscode.Range(line, column, line, column);
 
 	const diagnostic = new vscode.Diagnostic(range, message, vscode.DiagnosticSeverity.Error);
-	diagnostic.code = MCLANG_ERROR;
+	diagnostic.code = MINITY_ERROR;
 	return diagnostic;
 }
 
