@@ -84,7 +84,7 @@
             </dict>
            </array>
           <key>end</key>
-          <string>([\}\&quot;])</string>
+          <string>([\}\&quot;]|$)</string>
           <key>endCaptures</key>
           <dict>
             <key>1</key>
@@ -102,7 +102,7 @@
       <array> 
         <dict>
           <key>match</key>
-          <string>([^\x{0022}\x{005c}\x{007b}\x{007d}]+)</string>
+          <string>([^\x{0022}\x{005c}\x{007b}\x{007d}\n\n]+)</string>
           <key>name</key>
           <string>variable.other.constant.mclang</string>
         </dict>
@@ -202,6 +202,63 @@
         </dict>
        </array>
     </dict>
+    <key>conditions</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>begin</key>
+          <string>(\[)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>support.class.mclang</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#conditions__1</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(\])</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>support.class.mclang</string>
+            </dict>
+          </dict>
+        </dict>
+       </array>
+    </dict>
+    <key>conditions__1</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>match</key>
+          <string>(\s*(?:\b(?:sort|limit|tag|nbt|type|predicate|distance|level|team|name|gamemode|scores|advancements)\b)\s*=\s*)</string>
+          <key>name</key>
+          <string>support.class.mclang</string>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>(\s*(?:[a-zA-Z]\w*)\s*=\s*)</string>
+          <key>name</key>
+          <string>invalid.illegal.error.mclang</string>
+        </dict>
+        <dict>
+          <key>include</key>
+          <string>#literals</string>
+        </dict>
+       </array>
+    </dict>
     <key>globals</key>
     <dict>
       <key>patterns</key>
@@ -214,13 +271,38 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(/.+)</string>
+          <string>(sssss/.+)</string>
           <key>name</key>
-          <string>text.mclang</string>
+          <string>entity.name.function.mclang</string>
         </dict>
         <dict>
-          <key>include</key>
-          <string>#selector</string>
+          <key>begin</key>
+          <string>(/)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>entity.name.function.mclang</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#inside_command</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(^)</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>entity.name.function.mclang</string>
+            </dict>
+          </dict>
         </dict>
         <dict>
           <key>match</key>
@@ -230,57 +312,13 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(tag)(\s+)((?:[a-zA-Z]\w*))(?!.*?\@)</string>
+          <string>(^\s*tag)(?!\s*@)(\s+)(\w+)</string>
           <key>captures</key>
           <dict>
             <key>1</key>
             <dict>
               <key>name</key>
               <string>storage.type.mclang</string>
-            </dict>
-            <key>2</key>
-            <dict>
-              <key>name</key>
-              <string>support.class.mclang</string>
-            </dict>
-            <key>3</key>
-            <dict>
-              <key>name</key>
-              <string>support.class.mclang</string>
-            </dict>
-          </dict>
-        </dict>
-        <dict>
-          <key>match</key>
-          <string>(var)(\s+$)((?:[a-zA-Z]\w*))</string>
-          <key>captures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>storage.type.mclang</string>
-            </dict>
-            <key>2</key>
-            <dict>
-              <key>name</key>
-              <string>variable.mclang</string>
-            </dict>
-            <key>3</key>
-            <dict>
-              <key>name</key>
-              <string>variable.mclang</string>
-            </dict>
-          </dict>
-        </dict>
-        <dict>
-          <key>match</key>
-          <string>(tag|untag)(\s+)((?:[a-zA-Z]\w*))</string>
-          <key>captures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>entity.name.function.mclang</string>
             </dict>
             <key>2</key>
             <dict>
@@ -296,15 +334,97 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>((?:\b(?:namespace|function|macro|var|score|after|true|false|json|tag|align|anchored|as|at|for|in|up|down|north|south|east|west|left|right|pos|positioned|rot|rotated|if|unless|else|then|repeat|every|until)\b))</string>
+          <string>(^\s*score)(\s+)(\w+)</string>
+          <key>captures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>storage.type.mclang</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>whitespace.mclang</string>
+            </dict>
+            <key>3</key>
+            <dict>
+              <key>name</key>
+              <string>variable.mclang</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>(^\s*(?:\b(?:function|macro|namespace|score|tag|var)\b))</string>
+          <key>name</key>
+          <string>storage.type.mclang</string>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>(score)(\s+)((?:[a-zA-Z]\w*))</string>
+          <key>captures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>storage.type.mclang</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>variable.mclang</string>
+            </dict>
+            <key>3</key>
+            <dict>
+              <key>name</key>
+              <string>variable.mclang</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>(bossbar)(\s+)((?:[a-zA-Z]\w*))(\s+)(value|visible|max|players|name)</string>
+          <key>captures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.mclang</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>whitespace.mclang</string>
+            </dict>
+            <key>3</key>
+            <dict>
+              <key>name</key>
+              <string>text.mclang</string>
+            </dict>
+            <key>4</key>
+            <dict>
+              <key>name</key>
+              <string>whitespace.mclang</string>
+            </dict>
+            <key>5</key>
+            <dict>
+              <key>name</key>
+              <string>meta.object.literal.key.mclang</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>((?:\b(?:after|else|every|and|if|import|repeat|test|then|until|unless|when|while|with|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\b)|(?:\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\b))</string>
           <key>name</key>
           <string>keyword.control.mclang</string>
         </dict>
         <dict>
           <key>match</key>
-          <string>((?:\b(?:print|give|setblock|delete|remove|summon|untag)\b))</string>
+          <string>((?:\b(?:append|delete|merge|bossbar|clear|delete|give|prepend|remove|print|say|setblock|summon|tag|untag|add|remove)\b))</string>
           <key>name</key>
-          <string>entity.name.function.mclang</string>
+          <string>keyword.control.mclang</string>
         </dict>
         <dict>
           <key>match</key>
@@ -317,6 +437,10 @@
           <string>((?:(?:(?:[a-zA-Z]\w*):)?(?:[a-zA-Z]\w*)(?:/(?:[a-zA-Z]\w*))*)\s*(?=\())</string>
           <key>name</key>
           <string>entity.name.function.mclang</string>
+        </dict>
+        <dict>
+          <key>include</key>
+          <string>#selector</string>
         </dict>
         <dict>
           <key>include</key>
@@ -336,15 +460,31 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>([\x{005b}\]\x{003a}\x{003d}\x{002c}\x{0023}\x{003c}\x{003e}\x{002b}\-\x{002a}\x{002f}\x{0025}]|\.\.)</string>
+          <string>([\x{005b}\]\x{003a}\x{003d}\x{002c}\x{0023}\x{003c}\x{003e}\x{002b}\-\x{002a}\x{0026}\x{002f}\x{0025}\x{003f}]|\.\.)</string>
           <key>name</key>
           <string>punctuation.mclang</string>
         </dict>
         <dict>
           <key>match</key>
-          <string>(.)</string>
+          <string>(\S)</string>
           <key>name</key>
           <string>invalid.illegal.error.mclang</string>
+        </dict>
+       </array>
+    </dict>
+    <key>inside_command</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>include</key>
+          <string>#inside_expansion</string>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>([^\x{007b}\n\n]+)</string>
+          <key>name</key>
+          <string>entity.name.function.mclang</string>
         </dict>
        </array>
     </dict>
@@ -359,6 +499,14 @@
         <dict>
           <key>include</key>
           <string>#tag_expansion</string>
+        </dict>
+        <dict>
+          <key>include</key>
+          <string>#selector_expansion</string>
+        </dict>
+        <dict>
+          <key>include</key>
+          <string>#literal_expansion</string>
         </dict>
        </array>
     </dict>
@@ -381,6 +529,51 @@
           <string>([^\x{0022}\x{005c}\x{007b}]+)</string>
           <key>name</key>
           <string>string.mclang</string>
+        </dict>
+       </array>
+    </dict>
+    <key>literal_expansion</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>begin</key>
+          <string>(\{=)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.mclang</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#literal_expansion__1</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>([\}\&quot;]|$)</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.mclang</string>
+            </dict>
+          </dict>
+        </dict>
+       </array>
+    </dict>
+    <key>literal_expansion__1</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>include</key>
+          <string>#values</string>
         </dict>
        </array>
     </dict>
@@ -433,6 +626,12 @@
         </dict>
         <dict>
           <key>match</key>
+          <string>(true|false)</string>
+          <key>name</key>
+          <string>constant.numeric.mclang</string>
+        </dict>
+        <dict>
+          <key>match</key>
           <string>([\x{002b}-]?[0-9]+)((?:\.[0-9]+)?)((?:[eE][0-9]+)?)((?:deg|[fdbsli])?)</string>
           <key>captures</key>
           <dict>
@@ -478,7 +677,7 @@
       <array> 
         <dict>
           <key>begin</key>
-          <string>(\()</string>
+          <string>(\()(?=.*?@)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -505,6 +704,35 @@
             </dict>
           </dict>
         </dict>
+        <dict>
+          <key>begin</key>
+          <string>(\()</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.mclang</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#parens__2</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(\))</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.mclang</string>
+            </dict>
+          </dict>
+        </dict>
        </array>
     </dict>
     <key>parens__1</key>
@@ -512,8 +740,18 @@
       <key>patterns</key>
       <array> 
         <dict>
+          <key>include</key>
+          <string>#selector</string>
+        </dict>
+       </array>
+    </dict>
+    <key>parens__2</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
           <key>match</key>
-          <string>((?:\b(?:in|up|down|north|south|east|west|left|right)\b))</string>
+          <string>((?:\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\b))</string>
           <key>name</key>
           <string>keyword.control.mclang</string>
         </dict>
@@ -556,7 +794,7 @@
             </dict>
            </array>
           <key>end</key>
-          <string>(?:(&lt;/)(\2)(&gt;)|(/&gt;))</string>
+          <string>(?:(&lt;/)(?:(?=\2\b))((?:[a-zA-Z]\w*))(&gt;)|(/&gt;))</string>
           <key>endCaptures</key>
           <dict>
             <key>1</key>
@@ -594,29 +832,6 @@
       <key>patterns</key>
       <array> 
         <dict>
-          <key>match</key>
-          <string>(&lt;/[^\x{003e}]*.)</string>
-          <key>name</key>
-          <string>invalid.illegal.error.mclang</string>
-        </dict>
-        <dict>
-          <key>match</key>
-          <string>((?:[a-zA-Z]\w*))(\s*=\s*)</string>
-          <key>captures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>entity.other.attribute-name.mclang</string>
-            </dict>
-            <key>2</key>
-            <dict>
-              <key>name</key>
-              <string>punctuation.definition.tag.mclang</string>
-            </dict>
-          </dict>
-        </dict>
-        <dict>
           <key>include</key>
           <string>#literals</string>
         </dict>
@@ -646,6 +861,23 @@
             <dict>
               <key>name</key>
               <string>punctuation.definition.tag.mclang</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>(&lt;/)((?:[a-zA-Z]\w*))</string>
+          <key>captures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.mclang</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>invalid.illegal.error.mclang</string>
             </dict>
           </dict>
         </dict>
@@ -700,7 +932,7 @@
             </dict>
            </array>
           <key>end</key>
-          <string>([\s])</string>
+          <string>(?=[^\[\{.\x{0021}])</string>
           <key>endCaptures</key>
           <dict>
             <key>1</key>
@@ -717,33 +949,12 @@
       <key>patterns</key>
       <array> 
         <dict>
-          <key>begin</key>
-          <string>(\[)</string>
-          <key>beginCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>support.class.mclang</string>
-            </dict>
-          </dict>
-          <key>patterns</key>
-          <array> 
-            <dict>
-              <key>include</key>
-              <string>#selector__2</string>
-            </dict>
-           </array>
-          <key>end</key>
-          <string>(\])</string>
-          <key>endCaptures</key>
-          <dict>
-            <key>1</key>
-            <dict>
-              <key>name</key>
-              <string>support.class.mclang</string>
-            </dict>
-          </dict>
+          <key>include</key>
+          <string>#braces</string>
+        </dict>
+        <dict>
+          <key>include</key>
+          <string>#conditions</string>
         </dict>
         <dict>
           <key>match</key>
@@ -804,25 +1015,48 @@
         </dict>
        </array>
     </dict>
-    <key>selector__2</key>
+    <key>selector_expansion</key>
     <dict>
       <key>patterns</key>
       <array> 
         <dict>
-          <key>match</key>
-          <string>(\s*(?:\b(?:sort|limit|tag|nbt|type|predicate|distance|level|team|name|gamemode|scores|advancements)\b)\s*=\s*)</string>
-          <key>name</key>
-          <string>support.class.mclang</string>
+          <key>begin</key>
+          <string>(\{)(?=.*@)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.mclang</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#selector_expansion__1</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>([\}\&quot;]|$)</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.mclang</string>
+            </dict>
+          </dict>
         </dict>
-        <dict>
-          <key>match</key>
-          <string>(\s*(?:[a-zA-Z]\w*)\s*=\s*)</string>
-          <key>name</key>
-          <string>invalid.illegal.error.mclang</string>
-        </dict>
+       </array>
+    </dict>
+    <key>selector_expansion__1</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
         <dict>
           <key>include</key>
-          <string>#literals</string>
+          <string>#selector</string>
         </dict>
        </array>
     </dict>
@@ -904,10 +1138,6 @@
       <array> 
         <dict>
           <key>include</key>
-          <string>#selector</string>
-        </dict>
-        <dict>
-          <key>include</key>
           <string>#raw_tags</string>
         </dict>
         <dict>
@@ -915,6 +1145,23 @@
           <string>(\$(?:[a-zA-Z]\w*))</string>
           <key>name</key>
           <string>variable.mclang</string>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>(-&gt;)((?:[a-zA-Z]\w*))</string>
+          <key>captures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.mclang</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>variable.mclang</string>
+            </dict>
+          </dict>
         </dict>
         <dict>
           <key>include</key>

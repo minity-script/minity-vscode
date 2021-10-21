@@ -39,6 +39,6 @@
         ]
     },
     "dependencies": {
-        "@mclang/mclang": "file:../mclang"
+        "@mclang/parser": "file:../mclang-parser"
     }
 }

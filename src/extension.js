@@ -1,16 +1,16 @@
 const vscode = require('vscode');
-const { findError } = require('@mclang/mclang');
+const { findError } = require('@mclang/parser');
 
 function activate(context) {
+	/*
 	let disposable = vscode.commands.registerCommand('mclang.helloWorld', function () {
 		vscode.window.showInformationMessage('Hello World from mclang!');
 	});
 	context.subscriptions.push(disposable);
-
+	*/
   const mclangDiagnostics = vscode.languages.createDiagnosticCollection("mclang");
   context.subscriptions.push(mclangDiagnostics);
   subscribeToDiagnostics(context,mclangDiagnostics);
-	console.log("We are running")
 }
 
 
@@ -26,7 +26,6 @@ const MCLANG_ERROR = 'mclang_error';
 
 function refreshDiagnostics(doc, collection)  {
 	if (doc.languageId !== "mclang") return;
-	console.log("We are diagnosticating")
 	const diagnostics = [];
 
   const text = doc.getText();

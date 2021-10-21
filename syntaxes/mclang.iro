@@ -17,12 +17,12 @@ styles[] {
    }
 
    .cmd      : style {
-       color = yellow
-       textmate_scope = entity.name.function
+       color = cyan
+       textmate_scope = keyword.control
    }
    .command    : style {
-       color = violet
-       textmate_scope = text
+       color = gold
+       textmate_scope = entity.name.function
    }
    .punctuation : style {
        color = white
@@ -67,6 +67,10 @@ styles[] {
    .type    : style {
        color = cyan
        textmate_scope = storage.type
+   }
+   .prop    : style {
+       color = cyan
+       textmate_scope = meta.object.literal.key
    }
    .var    : style {
        color = violet
@@ -115,11 +119,14 @@ styles[] {
 ########################################
 
 
-__keywords = (?:\\b(?:namespace|function|macro|var|score|after|true|false|json|tag|align|anchored|as|at|for|in|up|down|north|south|east|west|left|right|pos|positioned|rot|rotated|if|unless|else|then)\\b)
+__keywords = (?:\\b(?:after|else|every|and|if|import|repeat|test|then|until|unless|when|while|with|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\\b)
 
-__cmd = (?:\\b(?:print|give|setblock|delete|remove|summon|untag)\\b)
+__declare = (?:\\b(?:function|macro|namespace|score|tag|var)\\b)
 
-__coords = (?:\\b(?:in|up|down|north|south|east|west|left|right)\\b)
+
+__cmd = (?:\\b(?:append|delete|merge|bossbar|clear|delete|give|prepend|remove|print|say|setblock|summon|tag|untag|add|remove)\\b)
+
+__coords = (?:\\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\\b)
 __conds = (?:\\b(?:sort|limit|tag|nbt|type|predicate|distance|level|team|name|gamemode|scores|advancements)\\b)
 __sort = (?:\\b(?:nearest|closest|furthest|arbitrary|oldest|any|random)\\b)
 
@@ -158,35 +165,50 @@ contexts[] {
          styles[] = .comment;
       }
       : pattern {
-         regex   \= (/.+)
+         regex   \= (sssss/.+)
          styles[] = .command;
       }
       
-      : include "selector";
-
-
+     : push {
+         regex         \= (/)
+         styles []      = .command;
+         context[]      = inside_command;
+      }
+      
       : pattern {
          regex   \= (\.$${__word})
          styles[] = .tag;
       }
 
       : pattern {
-         regex   \= (tag)(\s+)($${__word})(?!.*?\@)
-         styles[] = .type,.tag,.tag;
+         regex   \= (^\s*tag)(?!\s*@)(\s+)(\w+)
+         styles[] = .type,.ws,.tag;
       }
       
       : pattern {
-         regex   \= (var)(\s+$)($${__word})
-         styles[] = .type,.var,.var;
-      }
-      
-      : pattern {
-         regex   \= (tag|untag)(\s+)($${__word})
-         styles[] = .cmd,.ws,.tag;
+         regex   \= (^\s*score)(\s+)(\w+)
+         styles[] = .type,.ws,.var;
       }
 
       : pattern {
-         regex   \= ($${__keywords})
+         regex   \= (^\s*$${__declare})
+         styles[] = .type;
+      }
+      : pattern {
+         regex   \= (score)(\s+)($${__word})
+         styles[] = .type,.var,.var;
+      }
+      
+      
+
+      : pattern {
+         regex   \= (bossbar)(\s+)($${__word})(\s+)(value|visible|max|players|name)
+         styles[] = .cmd,.ws,.unquoted_text,.ws,.prop ;
+      }
+
+
+      : pattern {
+         regex   \= ($${__keywords}|$${__coords})
          styles[] = .keyword;
       }
 
@@ -206,10 +228,7 @@ contexts[] {
          styles[] = .function;
       }
       
-      
-   
-   
-   
+      : include "selector";
 
 
       : include "braces";
@@ -218,11 +237,12 @@ contexts[] {
       : include "values";
       
       : pattern {
-         regex   \= ([[\]:=,#<>+\-*/%]|\.\.)
+         regex   \= ([[\]:=,#<>+\-*&/%?]|\.\.)
          styles[] = .punctuation;
       }
+      
       : pattern {
-          regex   \= (.)
+          regex   \= (\S)
           styles[] = .illegal;
       }
 
@@ -234,27 +254,13 @@ contexts[] {
          styles[] = .selector, .selector, .selector;
          
          : pop {
-            regex \= ([\s])
+            regex \= (?=[^\[\{.!])
             styles[] = .selector;
          }
+
+         : include "braces";
+         : include "conditions";
       
-         : inline_push {
-            regex         \= (\[)
-            styles []      = .selector;
-            : pop {
-               regex      \= (\])
-               styles []   = .selector;
-            }
-            : pattern {
-               regex      \= (\s*$${__conds}\s*=\s*)
-               styles []   = .selector;
-            }
-            : pattern {
-               regex      \= (\s*$${__word}\s*=\s*)
-               styles []   = .illegal;
-            }
-            : include "literals";
-         }
 
          : pattern {
             regex   \= (\.$${__word})
@@ -272,7 +278,25 @@ contexts[] {
       }
    }
    
-   
+   conditions: context {
+   : inline_push {
+            regex         \= (\[)
+            styles []      = .selector;
+            : pop {
+               regex      \= (\])
+               styles []   = .selector;
+            }
+            : pattern {
+               regex      \= (\s*$${__conds}\s*=\s*)
+               styles []   = .selector;
+            }
+            : pattern {
+               regex      \= (\s*$${__word}\s*=\s*)
+               styles []   = .illegal;
+            }
+            : include "literals";
+         }
+   }
    
    braces : context {
       : inline_push {
@@ -299,17 +323,29 @@ contexts[] {
    }
    
    values: context {
-         : include "selector" ;
          : include "raw_tags";
           : pattern {
                regex   \= (\$$${__word})
                styles[] = .var;
+           }
+           : pattern {
+               regex   \= (->)($${__word})
+               styles[] = .punctuation,.var;
            }
          : include "literals" ;
    }
    
    
    parens : context {
+      : inline_push {
+         regex       \= (\()(?=.*?@)
+         styles []    = .punctuation;
+         : pop {
+            regex    \= (\))
+            styles [] = .punctuation;
+         }
+         : include "selector";
+      }
       : inline_push {
          regex       \= (\()
          styles []    = .punctuation;
@@ -340,6 +376,11 @@ contexts[] {
          context []     = inside_quotes;
       }
       : pattern {
+         regex   \= (true|false)
+         styles[] = .number;
+      }
+      
+      : pattern {
          regex   \= ([+-]?[0-9]+)((?:\.[0-9]+)?)((?:[eE][0-9]+)?)((?:deg|[fdbsli])?)
          styles[] = .number,.number,.number, .number;
       }
@@ -356,8 +397,9 @@ contexts[] {
       : inline_push {
          regex         \= (<)($${__word})(\s*)
          styles []      = .raw_punct, .raw_name, .ws;
+         // replace ($${__word}(?=###)?) with (\2) in textmate
          :pop {
-            regex         \= (?:(</)($${__word})(>)|(/>))
+            regex         \= (?:(</)(?:(?=\2\b))($${__word})(>)|(/>))
             styles []      = .raw_punct, .raw_name, .raw_punct, .raw_punct;
          }
          : include "literals";
@@ -374,6 +416,10 @@ contexts[] {
                styles [] = .raw_text;
             }      
          }
+         : pattern {
+            regex      \= (</)($${__word})
+            styles [] = .punctuation,.illegal;
+         }      
       }
       : pattern {
          regex      \= (</)
@@ -400,12 +446,28 @@ contexts[] {
       }
    }
    
+   inside_command : context {
+      : pop {
+         regex      \= (^)
+         styles []   = .command;
+      }
+      
+      : include "inside_expansion";
+
+      : pattern {
+         regex      \= ([^{\n\r]+)
+         styles [] = .command;
+      }
+   }
+   
    
    inside_expansion: context {
       :include "arg_expansion";
       :include "tag_expansion";
-      
+      :include "selector_expansion";
+      :include "literal_expansion";
    }
+
 
    
    arg_expansion : context {
@@ -414,19 +476,45 @@ contexts[] {
          regex       \= (\{)(\?)
          styles []    = .punctuation, .arg;
          : pop {
-            regex    \= ([\}\"])
+            regex    \= ([\}\"]|$)
             styles [] = .punctuation;
          }
          
        : pattern {
-         regex      \= ([^"\\{}]+)
+         regex      \= ([^"\\{}\r\n]+)
          styles [] = .arg;
        }   
        : include "inside_expansion";
          
       }
    }
+   literal_expansion : context {
+     
+       : inline_push {
+         regex       \= (\{=)
+         styles []    = .punctuation;
+         : pop {
+            regex    \= ([\}\"]|$)
+            styles [] = .punctuation;
+         }
+       : include "values";
+         
+      }
+   }
    
+   selector_expansion : context {
+     
+       : inline_push {
+         regex       \= (\{)(?=.*@)
+         styles []    = .punctuation;
+         : pop {
+            regex    \= ([\}\"]|$)
+            styles [] = .punctuation;
+         }
+       : include "selector";
+         
+      }
+   }
    
    tag_expansion : context {
      

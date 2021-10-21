@@ -1,14 +1,11 @@
-# McLang Language Support
+# Mclang Language Support
 
-McLang Language Support provides language features for McLang
+Mclang Language Support provides language features for mclang
 
 ## Features
 
-* syntax highlighting for .mclang files
+* syntax highlighting and syntax checking for .mclang files
 
-## Known Issues
-
-* not all tokens are correctly covered, with "&" being the notable exception.
 
 ## Release Notes
 
