@@ -119,7 +119,7 @@ styles[] {
 ########################################
 
 
-__keywords = (?:\\b(?:after|else|every|and|if|import|repeat|test|then|until|unless|when|while|with|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\\b)
+__keywords = (?:\\b(?:after|else|every|and|if|import|repeat|test|then|until|unless|when|while|except|catch|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\\b)
 
 __declare = (?:\\b(?:function|macro|namespace|score|tag|var)\\b)
 
@@ -129,12 +129,15 @@ __cmd = (?:\\b(?:append|delete|merge|bossbar|clear|delete|give|prepend|remove|pr
 __coords = (?:\\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\\b)
 __conds = (?:\\b(?:sort|limit|tag|nbt|type|predicate|distance|level|team|name|gamemode|scores|advancements)\\b)
 __sort = (?:\\b(?:nearest|closest|furthest|arbitrary|oldest|any|random)\\b)
-
+__pseudo = (?:\\b(?:resolve|reject|self)\\b)
+__greedy = (?:\\b(?:say)\\b)
 
 __word = (?:[a-zA-Z]\\w*)
 
 __resloc = (?:(?:$${__word}:)?$${__word}(?:/$${__word})*)
 __restag = (?:#$${__resloc})
+
+
 
 contexts[] {
    main : context {
@@ -174,6 +177,17 @@ contexts[] {
          styles []      = .command;
          context[]      = inside_command;
       }
+     : push {
+         regex         \= (say)
+         styles []      = .cmd;
+         context[]      = inside_command;
+      }
+
+      : pattern {
+         regex         \= ($${__pseudo})(\s*\(\s*\))
+         styles []      = .cmd,.punctuation;
+      }
+
       
       : pattern {
          regex   \= (\.$${__word})

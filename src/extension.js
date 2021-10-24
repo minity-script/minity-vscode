@@ -29,7 +29,7 @@ function refreshDiagnostics(doc, collection)  {
 	const diagnostics = [];
 
   const text = doc.getText();
-  const error = findError(text);
+  const error = findError(text,{file:doc.uri.fsPath});
 	if (error) {
 		const { message } = error;
 		const { line, column } = error.location.start;

@@ -305,6 +305,52 @@
           </dict>
         </dict>
         <dict>
+          <key>begin</key>
+          <string>(say)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.minity</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#inside_command</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(^)</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>entity.name.function.minity</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>((?:\b(?:resolve|reject|self)\b))(\s*\(\s*\))</string>
+          <key>captures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>keyword.control.minity</string>
+            </dict>
+            <key>2</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.minity</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
           <key>match</key>
           <string>(\.(?:[a-zA-Z]\w*))</string>
           <key>name</key>
@@ -416,7 +462,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>((?:\b(?:after|else|every|and|if|import|repeat|test|then|until|unless|when|while|with|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\b)|(?:\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\b))</string>
+          <string>((?:\b(?:after|else|every|and|if|import|repeat|test|then|until|unless|when|while|except|catch|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\b)|(?:\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\b))</string>
           <key>name</key>
           <string>keyword.control.minity</string>
         </dict>
