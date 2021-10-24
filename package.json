@@ -15,12 +15,6 @@
     ],
     "main": "./src/extension.js",
     "contributes": {
-        "commands": [
-            {
-                "command": "minity.helloWorld",
-                "title": "Hello World"
-            }
-        ],
         "languages": [
             {
                 "id": "minity",
@@ -39,6 +33,10 @@
         ]
     },
     "dependencies": {
-        "@minity/parser": "file:../mclang-parser"
+        "@minity/parser": "^1.0.0-alpha.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/minity-script/parser.git"
     }
 }
