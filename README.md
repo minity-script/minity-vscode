@@ -11,9 +11,14 @@ For information about Minity, see https://github.com/minity-script/minity.
 
 ## Release Notes
 
-### 1.0.0a
+### 1.0.0
 
-Testing release, covers most of the language
+Initeal release, covers most of the language
+
+### 1.0.1
+
+Bump parser version
+
 
 ## License
 
