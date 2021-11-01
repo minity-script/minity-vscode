@@ -1,28 +1,32 @@
 # Minity Language Support
 
-Minity Language Support provides language features for Minity
+Minity Language Support provides language features for Minity, a scripting language for Vanilla Minecraft datapacks.
 
-For information about Minity, see https://github.com/minity-script/minity.
+For information about Minity, visit the [project documentation website](https://minity-script.github.io/minity).
 
 ## Features
 
-* syntax highlighting and syntax checking for .minity files
+* Syntax highlighting and syntax checking for `.minity` files
 
 
 ## Release Notes
 
-### 1.0.0
+### 1.0.4
 
-- Initial release, covers most of the language
+- Add Minity Icon
+  
+### 1.0.3
+
+- Correctly displays data storage names after `@@`.
+- Bump parser version
 
 ### 1.0.1 - 1.0.2
 
 - Bump parser version
 
-### 1.0.3
+### 1.0.0
 
-- Correctly displays data storage names after `@@`.
-- Bump parser version
+- Initial release, covers most of the language
 
 ## License
 

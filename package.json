@@ -3,7 +3,7 @@
     "displayName": "Minity Language Support",
     "description": "Provide syntax highlighting for Minity",
     "publisher": "minity",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "engines": {
         "vscode": "^1.59.0"
     },
@@ -38,5 +38,6 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/minity-script/parser.git"
-    }
+    },
+    "icon":"images/minity-icon-large.png"
 }
