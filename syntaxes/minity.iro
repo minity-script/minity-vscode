@@ -124,7 +124,7 @@ __keywords = (?:\\b(?:after|else|every|and|if|import|repeat|test|then|until|unle
 __declare = (?:\\b(?:function|macro|namespace|score|tag|var)\\b)
 
 
-__cmd = (?:\\b(?:append|delete|merge|bossbar|clear|delete|give|prepend|remove|print|say|setblock|summon|tag|untag|add|remove)\\b)
+__cmd = (?:\\b(?:append|delete|merge|bossbar|clear|delete|give|prepend|insert|remove|print|say|setblock|summon|tag|untag|add|remove)\\b)
 
 __coords = (?:\\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\\b)
 __conds = (?:\\b(?:sort|limit|tag|nbt|type|predicate|distance|level|team|name|gamemode|scores|advancements)\\b)
@@ -345,6 +345,10 @@ contexts[] {
            : pattern {
                regex   \= (->)($${__word})
                styles[] = .punctuation,.var;
+           }
+           : pattern {
+               regex   \= (@@$${__word}(?::[\w/]+)?)
+               styles[] = .var;
            }
          : include "literals" ;
    }

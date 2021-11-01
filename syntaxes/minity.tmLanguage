@@ -468,7 +468,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>((?:\b(?:append|delete|merge|bossbar|clear|delete|give|prepend|remove|print|say|setblock|summon|tag|untag|add|remove)\b))</string>
+          <string>((?:\b(?:append|delete|merge|bossbar|clear|delete|give|prepend|insert|remove|print|say|setblock|summon|tag|untag|add|remove)\b))</string>
           <key>name</key>
           <string>keyword.control.minity</string>
         </dict>
@@ -1208,6 +1208,12 @@
               <string>variable.minity</string>
             </dict>
           </dict>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>(@@(?:[a-zA-Z]\w*)(?::[\w\x{002f}]+)?)</string>
+          <key>name</key>
+          <string>variable.minity</string>
         </dict>
         <dict>
           <key>include</key>

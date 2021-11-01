@@ -13,12 +13,16 @@ For information about Minity, see https://github.com/minity-script/minity.
 
 ### 1.0.0
 
-Initial release, covers most of the language
+- Initial release, covers most of the language
 
 ### 1.0.1 - 1.0.2
 
-Bump parser version
+- Bump parser version
 
+### 1.0.3
+
+- Correctly displays data storage names after `@@`.
+- Bump parser version
 
 ## License
 
