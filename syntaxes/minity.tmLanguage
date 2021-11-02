@@ -51,6 +51,30 @@
           </dict>
         </dict>
         <dict>
+          <key>begin</key>
+          <string>(define)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>storage.type.minity</string>
+            </dict>
+          </dict>
+          <key>contentName</key>
+          <string>entity.name.function.minity</string>
+          <key>end</key>
+          <string>(?=[\x{007b}])</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>punctuation.minity</string>
+            </dict>
+          </dict>
+        </dict>
+        <dict>
           <key>include</key>
           <string>#globals</string>
         </dict>
@@ -270,14 +294,8 @@
           <string>comment.minity</string>
         </dict>
         <dict>
-          <key>match</key>
-          <string>(sssss/.+)</string>
-          <key>name</key>
-          <string>entity.name.function.minity</string>
-        </dict>
-        <dict>
           <key>begin</key>
-          <string>(/)</string>
+          <string>((?&lt;!\S)/)</string>
           <key>beginCaptures</key>
           <dict>
             <key>1</key>
@@ -462,7 +480,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>((?:\b(?:after|else|every|and|if|import|repeat|test|then|until|unless|when|while|except|catch|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\b)|(?:\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\b))</string>
+          <string>((?:\b(?:after|else|every|and|if|import|define|repeat|test|then|until|unless|when|while|except|catch|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\b)|(?:\b(?:in|up|down|north|south|east|west|left|right|forward|back|upward|downward)\b))</string>
           <key>name</key>
           <string>keyword.control.minity</string>
         </dict>
@@ -712,6 +730,12 @@
        </array>
     </dict>
     <key>main__1</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+       </array>
+    </dict>
+    <key>main__2</key>
     <dict>
       <key>patterns</key>
       <array> 

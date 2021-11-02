@@ -119,7 +119,7 @@ styles[] {
 ########################################
 
 
-__keywords = (?:\\b(?:after|else|every|and|if|import|repeat|test|then|until|unless|when|while|except|catch|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\\b)
+__keywords = (?:\\b(?:after|else|every|and|if|import|define|repeat|test|then|until|unless|when|while|except|catch|align|anchored|as|at|facing|for|in|pos|positioned|predicate|rot|rotated)\\b)
 
 __declare = (?:\\b(?:function|macro|namespace|score|tag|var)\\b)
 
@@ -151,6 +151,16 @@ contexts[] {
             styles []   = .punctuation;
          }
       }
+      : inline_push {
+         regex         \= (define)
+         styles []      = .type;
+         
+         default_style  = .function
+         : pop {
+            regex      \= (?=[{])
+            styles []   = .punctuation;
+         }
+      }
       : include "globals";
    }
   
@@ -167,13 +177,10 @@ contexts[] {
          regex   \= (//.+)
          styles[] = .comment;
       }
-      : pattern {
-         regex   \= (sssss/.+)
-         styles[] = .command;
-      }
+     
       
      : push {
-         regex         \= (/)
+         regex         \= ((?<!\S)/)
          styles []      = .command;
          context[]      = inside_command;
       }

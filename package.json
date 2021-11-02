@@ -33,11 +33,11 @@
         ]
     },
     "dependencies": {
-        "@minity/parser": "^1.0.0-alpha.7"
+        "@minity/parser": "^1.0.0-alpha.8"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/minity-script/parser.git"
     },
-    "icon":"images/minity-icon-large.png"
+    "icon": "images/minity-icon-large.png"
 }
