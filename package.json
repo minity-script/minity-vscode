@@ -3,7 +3,7 @@
     "displayName": "Minity Language Support",
     "description": "Provide syntax highlighting for Minity",
     "publisher": "minity",
-    "version": "1.0.5",
+    "version": "1.0.7",
     "engines": {
         "vscode": "^1.59.0"
     },
@@ -33,7 +33,7 @@
         ]
     },
     "dependencies": {
-        "@minity/parser": "^1.0.0-alpha.8"
+        "@minity/parser": "^1.0.0-alpha.9"
     },
     "repository": {
         "type": "git",

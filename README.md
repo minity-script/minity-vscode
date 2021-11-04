@@ -11,9 +11,13 @@ For information about Minity, visit the [project documentation website](https://
 
 ## Release Notes
 
+
+### 1.0.6 - 1.07
+- Bump parser version
+
 ### 1.0.5
 
-- Bump parser version, resource location with slashes.
+- Bump parser version, correctly display resource location with slashes.
 
 ### 1.0.4
 
