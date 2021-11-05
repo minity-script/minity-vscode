@@ -12,7 +12,7 @@ For information about Minity, visit the [project documentation website](https://
 ## Release Notes
 
 
-### 1.0.6 - 1.07
+### 1.0.6 - 1.0.8
 - Bump parser version
 
 ### 1.0.5
