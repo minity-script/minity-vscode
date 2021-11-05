@@ -33,11 +33,11 @@
         ]
     },
     "dependencies": {
-        "@minity/parser": "^1.0.0-alpha.9"
+        "@minity/parser": "^1.0.0-alpha.13"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/minity-script/parser.git"
+        "url": "https://github.com/minity-script/minity-vscode.git"
     },
     "icon": "images/minity-icon-large.png"
 }
