@@ -3,7 +3,7 @@
     "displayName": "Minity Language Support",
     "description": "Provide syntax highlighting for Minity",
     "publisher": "minity",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "engines": {
         "vscode": "^1.59.0"
     },
