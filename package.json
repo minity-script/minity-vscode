@@ -33,7 +33,7 @@
         ]
     },
     "dependencies": {
-        "@minity/parser": "^1.0.0-alpha.18"
+        "@minity/parser": "^1.0.0-alpha.22"
     },
     "repository": {
         "type": "git",
