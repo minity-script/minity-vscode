@@ -4,7 +4,7 @@ All notable changes to the "minity" extension will be documented in this file.
 
 
 
-### 1.0.6 - 1.0.11
+### 1.0.6 - 1.0.12
 - Bump parser version
 
 ### 1.0.5
